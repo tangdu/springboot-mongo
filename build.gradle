@@ -1,0 +1,33 @@
+apply plugin: "war"
+apply plugin: "eclipse"
+
+group ="com.tdu"
+version = "1.0.0"
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+	
+[compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+  
+repositories {
+   mavenLocal()
+   mavenCentral()
+}
+
+configurations {
+	compile.exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
+	compile.exclude group: "org.codehaus.woodstox", module: "wstx-asl"
+	compile.exclude group: "log4j"
+	compile.exclude group: "commons-fileupload"
+}
+
+dependencies {
+	compile(
+		"org.springframework.boot:spring-boot-starter-web:${spring_boot_version}",
+		"org.springframework.boot:spring-boot-autoconfigure:${spring_boot_version}",
+		"org.springframework.boot:spring-boot-starter-data-mongodb:${spring_boot_version}",
+	)
+}
+
+
+
